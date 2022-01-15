@@ -1,0 +1,11 @@
+S:\c#\Tintorería\Tintorería\bin\Debug\Tintorería.exe.config
+S:\c#\Tintorería\Tintorería\bin\Debug\Tintorería.exe
+S:\c#\Tintorería\Tintorería\bin\Debug\Tintorería.pdb
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.csprojAssemblyReference.cache
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.Form_inicio.resources
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.Properties.Resources.resources
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.csproj.GenerateResource.cache
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.csproj.CoreCompileInputs.cache
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.exe
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.pdb
+S:\c#\Tintorería\Tintorería\obj\Debug\Tintorería.Form_Interfaz.resources
