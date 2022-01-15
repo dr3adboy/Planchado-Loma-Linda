@@ -67,7 +67,7 @@ namespace Tintorería
                     MessageBox.Show("No se encuentra un usuario con esa clave.", "Iniciar Sesión",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
 
-            }
+            }else MessageBox.Show("Favor de ingresar clave.", "Iniciar Sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 

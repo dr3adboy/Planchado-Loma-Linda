@@ -116,6 +116,7 @@ namespace Tintorería
                 dgv_tablaEmpleados.Visible = false;
                 lbl_claveEmp.Visible = false;
                 lbl_esEmpleado.Visible = false;
+                lbl_puesto.Visible = false;
                 lbl_tablaEmpl.Visible = false;
                 btn_buscarEmp.Visible = false;
                 btn_eliminarEmp.Visible = false;
@@ -189,26 +190,6 @@ namespace Tintorería
                 }
             }
         }
-
-        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-        public bool RefrescarTablaCli(string nombreTabla, int llave, string dato)
-        {
-            try
-            {
-                SqlCommand comando = new SqlCommand("UPDATE " + nombreTabla + " SET" + dato + " WHERE " + llave);
-                conexionString.Open();
-                comando.ExecuteNonQuery();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         private void dgv_tablaEmpleados_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             comandoSQL = new SqlCommand("UPDATE EMPLEADO SET nombre=@Nombre, puesto=@Puesto , direccion=@Direccion, telefono=@Telefono WHERE cve_Empleado=@cve_empleado", conexionString);
@@ -277,8 +258,7 @@ namespace Tintorería
                 conexionString.Open();
             SqlDataAdapter datosEmpleados = new SqlDataAdapter("SELECT cve_empleado AS 'Clave', nombre AS 'Nombre'," +
             "puesto AS 'Puesto', direccion AS 'Dirección', telefono AS 'Teléfono' FROM EMPLEADO" +
-            "WHERE cve_empleado = '" + Int32.Parse(tbx_claveEmp.Text)
-            + "'", conexionString);
+            " WHERE cve_empleado = '" + Int32.Parse(tbx_claveEmp.Text)+ "'" , conexionString);
             DataSet dsEmp = new DataSet();
             datosEmpleados.Fill(dsEmp);
             dgv_tablaEmpleados.DataSource = dsEmp.Tables[0];
@@ -320,9 +300,10 @@ namespace Tintorería
                     "@Fecha_entrega, @Cve_prenda, @Cve_cliente, @cve_empleado, @Costo)";
                 string comandoInsertarPrenda = " INSERT INTO PRENDAS(cve_prenda, prenda, tipo_tela) VALUES" +
                     " (@Cve_prenda, @Prenda, @Tipo_tela)";
-                
-                
+
+
                 //Ejecucion de query de SQL para insertar la prenda del pedido                
+                conexionString.Close();
                 comandoSQL = new SqlCommand(comandoInsertarPrenda, conexionString);
                 conexionString.Open();
                 comandoSQL.Parameters.AddWithValue("@Cve_prenda", CvePrenda);
@@ -425,27 +406,22 @@ namespace Tintorería
         }
 
         private int ObtenerUltimoTablaCliente() {
-            conexionString.Open();
             SqlCommand comandoSQLCliente = new SqlCommand("SELECT TOP 1 cve_cliente FROM CLIENTE ORDER BY cve_cliente DESC", conexionString);
             int cveCliente = Convert.ToInt32(comandoSQLCliente.ExecuteScalar());
-            conexionString.Close();
             return cveCliente;
 
         }
 
         private int ObtenerUltimoTablaEmpleado() {
-            conexionString.Open();
             SqlCommand comandoSQLEmpleado = new SqlCommand("SELECT TOP 1 cve_empleado FROM EMPLEADO ORDER BY cve_empleado DESC", conexionString);
             int cveEmpleado = Convert.ToInt32(comandoSQLEmpleado.ExecuteScalar());
-            conexionString.Close();
             return cveEmpleado;
         }
 
         private int ObtenerUltimoTablaPrenda() {
-            conexionString.Open();
             SqlCommand comandoSQLPrenda = new SqlCommand("SELECT TOP 1 cve_prenda FROM PRENDAS ORDER BY cve_prenda DESC", conexionString);
+            conexionString.Open();
             int cvePrenda = Convert.ToInt32(comandoSQLPrenda.ExecuteScalar());
-            conexionString.Close();
             return cvePrenda;
         }
 
